@@ -57,6 +57,7 @@ Snpr::Application.routes.draw do
   get '/user_index', :to => 'users#index'
   get '/rss', :to => 'genotypes#feed', :as => :feed, :defaults => {:format => 'rss' }
   get '/search', :to => 'search_results#search'
+  post '/users/:id/', :to => 'users#enter_variation'
   get '/users/:id/remove_help_one', :to => 'users#remove_help_one'
   get '/users/:id/remove_help_two', :to => 'users#remove_help_two'
   get '/users/:id/remove_help_three', :to => 'users#remove_help_three'
@@ -78,6 +79,5 @@ Snpr::Application.routes.draw do
   get '/user_picture_phenotypes/:id/edit', :to => 'user_picture_phenotypes#edit'
   get '/user_picture_phenotypes/:id/delete', :to => 'user_picture_phenotypes#delete'
   get '/beacon/rest/responses', :to => 'beacon#responses'
-
   mount Sidekiq::Web => '/sidekiq'
 end

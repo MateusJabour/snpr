@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'json'
 require ::File.expand_path('../config/environment',  __FILE__)
 
 Sidekiq::Web.use Rack::Session::Cookie, :secret => ENV['RACK_SESSION_COOKIE']
