@@ -54,8 +54,6 @@ gem 'whenever', require: false
 gem 'therubyracer'
 gem 'execjs'
 gem 'uglifier'
-gem 'jquery-rails'
-gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'sass-rails'
 #group :production do
 #	gem 'rpm_contrib'

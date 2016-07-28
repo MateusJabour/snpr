@@ -148,12 +148,6 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
-    jquery-rails (4.1.1)
-      rails-dom-testing (>= 1, < 3)
-      railties (>= 4.2.0)
-      thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.2.1)
-      railties (>= 3.2.16)
     json (1.8.3)
     libv8 (3.16.14.15)
     listen (3.1.5)
@@ -386,8 +380,6 @@ DEPENDENCIES
   friendly_id
   guard-rspec
   i18n (>= 0.6.6)
-  jquery-rails
-  jquery-ui-rails (~> 4.2.1)
   json
   lograge
   mediawiki-gateway
