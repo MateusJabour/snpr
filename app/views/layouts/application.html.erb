@@ -11,18 +11,17 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <%= stylesheet_link_tag "application" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tag %>
+    <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body data-namespace="<%= controller.controller_name %>/<%= controller.action_name %>">
     <%= render "layouts/navbar"%>
 
     <%if current_user %>
-    <div id="help_block">
+    <div data-js="help_block" id="help_block" class="container">
       <%unless (current_user.help_one or current_user.has_sequence) && (current_user.help_two or current_user.user_phenotypes != []) && (current_user.help_three or current_user.phenotype_creation_counter != 0) == true%>
-      <div class ="well row container test-userpage__help-block">
+      <div class ="well row test-userpage__help-block">
         <%if current_user.has_sequence == false and current_user.help_one == false%>
-        <div class="col-md-4 text-center" id="help_one">
+        <div class="col-md-4 text-center" id="help_one" data-js="help_one">
           <%=link_to "x",{:controller => "users", :action => "remove_help_one", :id => current_user}, :remote => true, id: "remove_help_one",:class => "close" %>
           <a href="/genotypes/new"><span class="glyphicon glyphicon-arrow-up test-userpage__help-text-icons"></span></a><br/>
           <h3>Upload Your Genotyping File</h3>
@@ -32,7 +31,7 @@
         </div>
         <%end%>
         <%if current_user.user_phenotypes == [] and current_user.help_two == false%>
-        <div class="col-md-4 text-center" id="help_two">
+        <div class="col-md-4 text-center" id="help_two" data-js="help_two">
           <%=link_to("x",{:controller => "users", :action => "remove_help_two", :id => current_user},:remote => true, id: "remove_help_two", :class => "close")%>
           <a href="/users/"+current_user.id.t_s+"#unentered_variations"><span class="glyphicon glyphicon-heart test-userpage__help-text-icons"></span></a><br/>
           <h3>Enter Your Variations</h3>
@@ -40,7 +39,7 @@
         </div>
         <%end%>
         <%if current_user.phenotype_creation_counter == 0 and current_user.help_three == false %>
-        <div class="col-md-4 text-center" id="help_three">
+        <div class="col-md-4 text-center" id="help_three" data-js="help_three">
           <%=link_to("x",{:controller => "users", :action => "remove_help_three", :id => current_user},:remote => true, id: "remove_help_three", :class => "close")%>
           <a href="/phenotypes/new"><span class="glyphicon glyphicon-folder-open test-userpage__help-text-icons"></span></a><br/>
           <h3>Enter a New Phenotype</h3>
@@ -105,5 +104,6 @@
       <% end # of sidebar%>
 
     <%= render "layouts/footer"%>
+    <%= javascript_include_tag 'vendor/require', data: {main: root_url + "assets/boot", "base-url": root_url, js:"script-tag"} %>
   </body>
 </html>
