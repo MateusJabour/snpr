@@ -2,20 +2,11 @@
   <h3 class="test-general__title">Create a new picture phenotype</h3>
   <%= form_for(@phenotype,:html => { :class => "form-horizontal test-picture-phenotype__new-form well"})  do |f| %>
   <%= render 'shared/error_messages', :target => @phenotype %>
-  <%phenotype_array = []%>
-  <%PicturePhenotype.all.each do |p| phenotype_array << p.characteristic end%>
-      <script type="text/javascript">
-      $(function () {
-        $("#picture_phenotype_characteristic").autocomplete({
-          source: <%=raw(phenotype_array.to_json)%>
-        });
-      });
-      </script>
 
     <div class="form-group">
       <%= f.label :characteristic, class: "col-sm-1 control-label" %>
       <div class="col-md-11">
-        <%= f.text_field :characteristic, class: "form-control" %>
+        <%= f.text_field :characteristic, class: "form-control", data: {js: "picture_phenotype_characteristic"} %>
       </div>
       <div class="col-md-11 col-md-offset-1">
         <small class="help-block">Face, skintype, form of hands etc. <br/>Please <b>enter only one phenotypic characteristic at once</b> and <b>make use of the auto-completion</b>, as this phenotype might be already in our database.</small>

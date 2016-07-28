@@ -10,17 +10,9 @@
             <%= user_phenotype.hidden_field :phenotype, :value => us.phenotype.id%>
             <%= user_phenotype.text_field :variation, :value => us.give_me_user_phenotype(us.phenotype.id, current_user.id), :id => "autocomplete_#{us.phenotype.id}" %>
         <% end %>
-    
-        <script type="text/javascript">
-        $(function () {
-            $("#autocomplete_<%=us.phenotype.id%>").autocomplete({
-                source: <%=raw(us.phenotype.known_phenotypes.to_json)%>
-            });
-        });
-        </script>
       </div>
       <% end %>
-      <div class="alert-actions"> 
+      <div class="alert-actions">
     	<%= f.submit "Submit your variation", :class => "btn btn-primary"  %>
     	</p></div>
     <% end %>

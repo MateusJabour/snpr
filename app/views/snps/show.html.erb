@@ -45,7 +45,8 @@
 
     <div class="col-md-3 test-snps__graphs">
       <h4 class="text-center">
-        <a href="#" data-toggle="tooltip" data-placement="left"  data-html="true" title="How the different genetic variation at this position is distributed over all <em>openSNP</em> users.">Genotype Frequency
+        <a href="#" data-toggle="tooltip" data-placement="left"  data-html="true" title="How the different genetic variation at this position is distributed over all <em>openSNP</em> users.">
+          Genotype Frequency
         </a>
       </h4>
       <% if @snp.total_genotypes != 0 %>
@@ -59,7 +60,8 @@
 
     <div class="col-md-3 test-snps__graphs">
       <h4 class="text-center">
-        <a href="#" data-toggle="tooltip" data-placement="left"  data-html="true" title="How the single nucleotides on this position are distributed over all <em>openSNP</em> users.">Allele Frequency
+        <a href="#" data-toggle="tooltip" data-placement="left"  data-html="true" title="How the single nucleotides on this position are distributed over all <em>openSNP</em> users.">
+          Allele Frequency
         </a>
       </h4>
       <% if @snp.total_alleles != 0 %>
@@ -228,13 +230,6 @@
       <h3>Users who share this SNP:</h3>
       <% if @snp.user_snps.size > 0 %>
       <div id="user-list"></div>
-      <script type="text/javascript">
-        $.ajax({
-          url: "/user_snps",
-          data: { snp_name: '<%= @snp.name %>', local_genotype: '<%= @local_genotype %>' },
-          success: function (html) { $("#user-list").append(html); }
-        });
-      </script>
       <% else %>
       No user shares this SNP.
       <% end %>
@@ -251,105 +246,9 @@
 
   <div class="well test-snps__genome-browser">
     <h5 class="text-center">Genome Browser</h5>
-    <script type="text/javascript">
-    new Browser({
-      chr:          '<%=@snp.chromosome%>',
-      viewStart:    <%=@snp.position.to_i-10000%>,
-      viewEnd:      <%=@snp.position.to_i+10000%>,
-      cookieKey:    '<%=@snp.name%>',
-      pageName:     '<%=@snp.name%>',
 
-      coordSystem: {
-        speciesName: 'Human',
-        taxon: 9606,
-        auth: 'GrCh',
-        version: '38',
-        ucscName: 'hg38'
-      },
-
-      sources:     [{name:    'Genome',
-      twoBitURI:            'https://www.biodalliance.org/datasets/hg38.2bit',
-      tier_type:            'sequence'},
-      {name:                  'Genes',
-      desc:                 'Gene structures from GENCODE 21',
-      bwgURI:               'https://www.biodalliance.org/datasets/GRCh38/gencode.v21.annotation.bb',
-      stylesheet_uri:       'https://www.biodalliance.org/stylesheets/gencode2.xml',
-      collapseSuperGroups:  true,
-      trixURI:              'https://www.biodalliance.org/datasets/GRCh38/gencode.v21.annotation.ix'}
-      <%if current_user%>
-      <%if current_user.genotypes != []%>
-      ,{name:                 'Your SNPs',
-      desc:                 'SNPs @ openSNP',
-      uri:                  '<%= request.base_url + "/das/" +current_user.id.to_s+"/"%>'}
-      <%end%>
-      <%end%>
-    ],
-
-    searchEndpoint: new DASSource('https://www.biodalliance.org/das/hsa_59_37d'),
-    browserLinks: {
-      Ensembl: 'http://www.ensembl.org/Homo_sapiens/Location/View?r=${chr}:${start}-${end}',
-      UCSC: 'http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg19&position=chr${chr}:${start}-${end}',
-    },
-
-    forceWidth: 900,
-    noPersist: true,
-    disablePoweredBy: true
-  });
-  </script>
   <div id="<%=@snp.name%>"></div>
 
-  <script type="text/javascript">
-  $(document).ready(function () {
-    <% if @snp.total_genotypes != 0 %>
-    <% counter = 0 %>
-    var freq_data=[
-    <%@snp.genotype_frequency.each do |key,value|%>
-    <% counter += 1 %>
-    ['<%=key%>',<%=(value.to_f/@snp.total_genotypes).to_s[0,4]%>]<% if counter != @snp.genotype_frequency.length %>,<%end%>
-    <%end%>
-    ];
-    var plot1 = jQuery.jqplot ('freq_chart', [freq_data],
-    {
-      /*seriesColors: ["#B0EDFF","#8EB5E8","#6E7CDB","#5F4DD6","#4823AD"],*/
-      seriesDefaults: {
-        renderer: jQuery.jqplot.PieRenderer,
-        rendererOptions: {
-          showDataLabels: true,
-          fill: false
-        }
-      },
-      legend: { show:true, location: 'e' },
-      grid: { shadow:false,
-        borderWidth: 0,
-        background: '#ffffff'}
-      }
-      );
-      <% counter = 0 %>
-      var allele_data=[
-      <%@snp.allele_frequency.each do |key,value|%>
-      <% counter += 1 %>
-      ['<%=key%>', <%= (value.to_f/@snp.total_alleles).to_s[0,4] %>]<% if counter != @snp.allele_frequency.length %>,<%end%>
-      <%end%>
-      ];
-      var plot2 = jQuery.jqplot ('allele_chart', [allele_data],
-      {
-        /*seriesColors: ["#B0EDFF","#8EB5E8","#6E7CDB","#5F4DD6","#4823AD"],*/
-        seriesDefaults: {
-          dataLabelPositionFactor: 3,
-          renderer: jQuery.jqplot.PieRenderer,
-          rendererOptions: {
-            showDataLabels: true,
-            fill: false
-          }
-        },
-        legend: { show:true, location: 'e' },
-        grid: { shadow:false,
-          borderWidth: 0,
-          background: '#ffffff'}
-        }
-        );
-        <%end%>
-      });
-    </script>
+
   </div>
 </div>

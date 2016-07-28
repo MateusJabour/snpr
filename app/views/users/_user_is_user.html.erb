@@ -3,7 +3,7 @@
     <%= image_tag @user.avatar.url(:thumb), class: "hidden-xs pull-left test-userpage__profile-picture"%>
     <h2>Hello, <%= @first_name %>
       <%if @user.fitbit_profile != nil%>
-      <%=link_to(image_tag("fitbit-icon.png"), {:controller => "fitbit_profiles", :action => "show", :id => @user.fitbit_profile.id}, :data => {toggle:"tooltip", placement:"bottom"}, :title => "See your Fitbit data")%>
+      <%=link_to(image_tag("fitbit-icon.png"), {:controller => "fitbit_profiles", :action => "show", :id => @user.fitbit_profile.id}, :data => {toggle:"tooltip", placement:"bottom", js: "fitbit-data-button"}, :title => "See your Fitbit data")%>
       <%end%>
     </h2>
     <% if @user.description != nil  %>
@@ -64,7 +64,7 @@
           <td class="table-cell vertical-centered"><%= i.number_of_users %> </td>
           <td class="table-cell vertical-centered"><%=link_to i.created_at,i%></td>
           <td class="table-cell vertical-centered">
-            <%= link_to "Enter variation", '#new_user_phenotype_modal'+i.id.to_s, :'data-toggle' => "modal", class: "btn btn-default" %>
+            <%= link_to "Enter variation", '#new_user_phenotype_modal'+i.id.to_s, data: {toggle: "modal", id: i.id.to_s, js:"enter-variation-button" }, class: "btn btn-default" %>
             <%= render partial: "user_phenotypes/new", layout: "layouts/modal", locals: { id: "new_user_phenotype_modal"+i.id.to_s, phenotype: i } %>
           </td>
         </tr>

@@ -16,20 +16,3 @@
 <% content_for id.to_sym do %>
   <h3 class="test-modal__text">What is your variation at phenotype <em><%=phenotype.characteristic%></em>?</h3>
 <% end %>
-
-<script type="text/javascript">
-// hides the input-box when user has selected a radio-button
-$(document).ready(function() {
-        $('input[type=radio]').click(function() {
-            $('<%="#phenotype_field"+phenotype.id.to_s%>').hide();
-            $("label[for=user_phenotype_variation]").hide();
-            });
-});
-// Autocomplete for variations in the input-box
-$(function () {
-    $('<%="#phenotype_field"+phenotype.id.to_s%>').autocomplete({
-        source: <%=raw(phenotype.known_phenotypes.to_json)%>
-    });
-});
-
-</script>

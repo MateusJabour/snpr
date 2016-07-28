@@ -15,7 +15,7 @@
   <div class="form-group">
     <%= f.label :variation, "Enter your phenotype:", class: "col-md-2 control-label" %>
     <div class="col-md-10">
-      <%= f.text_field :variation, :id => "phenotype_field", class: "form-control"%>
+      <%= f.text_field :variation, :data => {:js => "autocomplete-phenotype-field"}, class: "form-control"%>
     </div>
   </div>
 
@@ -29,29 +29,3 @@
 
   <%= f.submit "Submit your variation", :class => "btn btn-default" %>
 <% end %>
-
-  <script type="text/javascript">
-  // hides the input-box when user has selected a radio-button
-  $(document).ready(function() {
-    $('input[type=radio]').click(function() {
-      $('#phenotype_field').hide();
-      $("label[for=user_phenotype_variation]").hide();
-    });
-  });
-  // Autocomplete for variations in the input-box
-  $(function () {
-    $("#phenotype_field").autocomplete({
-      source: <%=raw(@phenotype.known_phenotypes.to_json)%>
-    });
-  });
-  $('#modal').on('shown', function(e) {
-    alert("hi");
-    var modal = $(this);
-
-    modal.css('margin-top', (modal.outerHeight() / 2) * -1)
-    .css('margin-left', (modal.outerWidth() / 2) * -1);
-
-    return this;
-  });
-
-  </script>

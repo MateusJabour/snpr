@@ -57,17 +57,8 @@
           <%= f.fields_for :user_phenotypes do |p| %>
           <% @phenotype = Phenotype.find_by_id(p.object.phenotype_id) %>
           <div class="field text-center">
-
-            <script type="text/javascript">
-            $(function () {
-              $("#phenotype_<%=p.object.phenotype_id.to_json%>").autocomplete({
-                source: <%=raw(Phenotype.find_by_id(p.object.phenotype_id).known_phenotypes.to_json)%>
-              });
-            });
-            </script>
-
             <%= p.label Phenotype.find_by_id(p.object.phenotype_id).characteristic %>
-            <%= p.text_field :variation, id: "phenotype_"+p.object.phenotype_id.to_s%>
+            <%= p.text_field :variation, id: "phenotype_"+p.object.phenotype_id.to_s, data: {js: "phenotype-" + p.object.phenotype_id.to_s}%>
             <%= p.link_to_remove "Remove"%><br/>
           </div>
           <% end %>

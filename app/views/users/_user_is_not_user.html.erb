@@ -4,7 +4,7 @@
 		<h3>
 			<%= @user.name %>'s page
 			<%if @user.fitbit_profile != nil%>
-			<%=link_to(image_tag("fitbit-icon.png"), {:controller => "fitbit_profiles", :action => "show", :id => @user.fitbit_profile.id}, :data => {toggle:"tooltip", placement:"bottom"}, :title => "See Fitbit data")%>
+			<%=link_to(image_tag("fitbit-icon.png"), {:controller => "fitbit_profiles", :action => "show", :id => @user.fitbit_profile.id}, :data => {toggle:"tooltip", placement:"bottom", js: "fitbit-data-button"}, :title => "See Fitbit data")%>
 			<%end%>
 		</h3>
 		<% if @user.description != "" and not @user.homepages.empty?%>
