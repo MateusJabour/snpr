@@ -15,6 +15,7 @@ class FitbitProfilesController < ApplicationController
   def show
     @fitbit_profile = FitbitProfile.find_by_id(params[:id]) || not_found
     @title = "Fitbit profile"
+    @data = {}
 
     #grab activity measures for graphs
     if @fitbit_profile.activities
@@ -50,6 +51,7 @@ class FitbitProfilesController < ApplicationController
       if not @total_steps.empty?
         begin
           @mean_steps = @total_steps[-1][-1] / @total_length #@activity.length
+          @data["mean_steps"] = @mean_steps
         rescue
         end
       end
@@ -61,6 +63,7 @@ class FitbitProfilesController < ApplicationController
         .where(fitbit_profile_id: @fitbit_profile.id)
         .order(:date_logged)
       @bmi = @body.map {|fa| [fa.date_logged, fa.bmi]}
+      @data["bmi"] = @bmi
     end
 
     #grab sleep measurements for graphs
@@ -68,6 +71,7 @@ class FitbitProfilesController < ApplicationController
       @sleep = FitbitSleep
         .where(fitbit_profile_id: @fitbit_profile.id)
         .order(:date_logged)
+
 
       @total_minutes_asleep = []
       @total_minutes_to_sleep = []
@@ -102,6 +106,21 @@ class FitbitProfilesController < ApplicationController
         rescue
         end
       end
+    end
+
+    @data["steps"] = @steps
+    @data["floors"] = @floors
+    @data["total_steps"] = @total_steps
+    @data["total_floors"] = @total_floors
+    @data["minutes_asleep"] = @minutes_asleep
+    @data["minutes_to_sleep"] = @minutes_to_sleep
+    @data["awakenings"] = @awakenings
+    @data["total_minutes_asleep"] = @total_minutes_asleep
+    @data["total_minutes_to_sleep"] = @total_minutes_to_sleep
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @data }
     end
   end
 

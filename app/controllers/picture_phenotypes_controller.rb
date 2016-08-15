@@ -23,13 +23,21 @@ class PicturePhenotypesController < ApplicationController
   end
 
   def new
+    @data = {}
+    
     @phenotype = PicturePhenotype.new
     @user_phenotype = UserPicturePhenotype.new
     @title = "Create a new picture phenotype"
 
+    phenotype_array = []
+    PicturePhenotype.all.each { |p| phenotype_array << p.characteristic }
+
+    @data['phenotype_array'] = phenotype_array
+
     respond_to do |format|
       format.html
       format.xml
+      format.json {render json: @data}
     end
   end
 

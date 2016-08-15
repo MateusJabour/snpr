@@ -23,13 +23,21 @@ class PhenotypesController < ApplicationController
   end
 
   def new
+    @data = {}
+
     @phenotype = Phenotype.new
     @user_phenotype = UserPhenotype.new
     @title = "Create a new phenotype"
 
+    phenotype_array = []
+    Phenotype.all.each { |p| phenotype_array << p.characteristic } # TODO: Move to instance variable
+
+    @data['phenotype_array'] = phenotype_array
+
     respond_to do |format|
       format.html
       format.xml
+      format.json { render json: @data }
     end
   end
 
@@ -91,6 +99,7 @@ class PhenotypesController < ApplicationController
   end
 
   def show
+    @data = {}
     @phenotype = Phenotype.find(params[:id]) || not_found
     @comments = PhenotypeComment
       .where(phenotype_id: params[:id])
@@ -105,6 +114,12 @@ class PhenotypesController < ApplicationController
       @similar_phenotypes = Phenotype.where(['id in (?)', similar_ids]).limit(6)
     else
       @similar_phenotypes = Phenotype.where(['id in (?)', similar_ids.map { |rec| rec.item_id } ]).limit(6)
+    end
+
+    @data['known_phenotypes'] = @phenotype.known_phenotypes
+    respond_to do |format|
+      format.html
+      format.json { render json: @data }
     end
   end
 

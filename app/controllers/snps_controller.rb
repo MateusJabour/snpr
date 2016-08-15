@@ -9,6 +9,7 @@ class SnpsController < ApplicationController
   end
 
   def show
+    @data = {}
     @snp = Snp.includes(:snp_comments).
       where(name: params[:id].downcase).first || not_found
 
@@ -31,10 +32,23 @@ class SnpsController < ApplicationController
       if @current_genotypes != []
         @user_snp = @snp.user_snps.where(genotype_id: @current_genotypes.first.id).first
         @local_genotype = @user_snp.try(:local_genotype) || ''
+        @data['local_genotype'] = @local_genotype
       else
         @user_snp = nil
         @local_genotype = nil
+        @data['local_genotype'] = @local_genotype
       end
+    end
+
+    @data['snp'] = @snp
+    @data['total_genotypes'] = @snp.total_genotypes
+    @data['total_alleles'] = @snp.total_alleles
+    @data['current_user'] = current_user
+    @data['requestBaseUrl'] = request.base_url
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @data }
     end
   end
 
@@ -59,12 +73,12 @@ class SnpsController < ApplicationController
         @new_param[:snp_name] = params[:snp_name].downcase
         @results << json_element(@new_param)
       end
-    else 
+    else
       @results = json_element(params)
     end
 
     respond_to do |format|
-      format.json { render json: @results } 
+      format.json { render json: @results }
     end
   end
 
@@ -167,9 +181,9 @@ class SnpsController < ApplicationController
       end
     end
 
-    @result = result 
+    @result = result
     respond_to do |format|
-      format.json { render json: @result } 
+      format.json { render json: @result }
     end
   end
 

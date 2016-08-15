@@ -69,6 +69,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def enter_variation
+    @unentered_phenotypes_clicked = Phenotype.find_by_id(params[:pheno_id])
+
+    respond_to do |format|
+      format.json { render json: @unentered_phenotypes_clicked }
+    end
+  end
+
   def show
     # showing a single user's page
     @user = User.find_by_id(params[:id]) || not_found
@@ -85,7 +93,6 @@ class UsersController < ApplicationController
     @unentered_phenotypes = Phenotype.all - @user.phenotypes
     @unentered_phenotypes = @unentered_phenotypes.shuffle
     @unentered_phenotypes = @unentered_phenotypes[0..20]
-
     #find all snp-comment-replies that this user got
     @user_snp_comment_ids = []
     @snp_comments.each do |sc| @user_snp_comment_ids << sc.id end
@@ -112,17 +119,31 @@ class UsersController < ApplicationController
     @phenotype_comment_replies.sort! { |b,a| a.created_at <=> b.created_at }
     @paginated_phenotype_replies = @phenotype_comment_replies
 
+
     respond_to do |format|
       format.html
+      format.json { render :json => @data }
     end
   end
 
   def edit
+    @data = {}
+
     @user = User.find(params[:id])
+    @user_phenotypes = @user.user_phenotypes
+    @known_phenotypes = []
+
+    @user_phenotypes.each { |value|
+      @known_phenotypes << Phenotype.find(value.phenotype_id)
+    }
+
+    @data['user_phenotypes'] = @user_phenotypes
+    @data['known_phenotypes'] = @known_phenotypes
 
     respond_to do |format|
       format.html
       format.xml
+      format.json {render json: @data}
     end
   end
 
