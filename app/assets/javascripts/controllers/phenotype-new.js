@@ -16,7 +16,6 @@ define([ 'jquery', 'bootstrap', 'jqueryui' ], function( $, bs, jqueryui ) {
     };
 
     var ajaxRequest = function (response) {
-      console.log(response);
       $(function () {
         $('[data-js="phenotype_characteristic"]').autocomplete({
           source: response.phenotype_array
@@ -27,7 +26,7 @@ define([ 'jquery', 'bootstrap', 'jqueryui' ], function( $, bs, jqueryui ) {
     return {
       init: init
     };
-    
+
   };
   return phenotypeNew();
 });

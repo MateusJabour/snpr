@@ -32,7 +32,6 @@ define(['jquery', 'jqueryJqplot', 'jqplotBarRenderer', 'jqplotCursor',
     };
 
     var ajaxRequest = function (response) {
-      console.log(response);
       $.ajax({
         url: "/user_snps",
         data: { snp_name: response.snp.name, local_genotype: response.local_genotype },
@@ -90,8 +89,6 @@ define(['jquery', 'jqueryJqplot', 'jqplotBarRenderer', 'jqplotCursor',
       if($('#freq_chart').length){
           var freq_data = [];
           $.each(response.snp.genotype_frequency, function (key, val) {
-            console.log(response.total_genotypes);
-            console.log(((val/response.total_genotypes) * 100).toString());
             freq_data.push([key, ((val/response.total_genotypes) * 100)]);
           });
 
@@ -115,12 +112,8 @@ define(['jquery', 'jqueryJqplot', 'jqplotBarRenderer', 'jqplotCursor',
         if($('#allele_chart').length){
           var allele_data = [];
           $.each(response.snp.allele_frequency, function (key, val) {
-            console.log(response.total_alleles);
-            console.log(((val/response.total_alleles) * 100).toString());
-            console.log(key);
             allele_data.push([key, ((val/response.total_alleles) * 100)]);
           });
-          console.log(allele_data);
           var plot2 = jQuery.jqplot ('allele_chart', [allele_data],
           {
             /*seriesColors: ["#B0EDFF","#8EB5E8","#6E7CDB","#5F4DD6","#4823AD"],*/
@@ -141,7 +134,6 @@ define(['jquery', 'jqueryJqplot', 'jqplotBarRenderer', 'jqplotCursor',
       };
 
     var userSnpAjaxRequest = function (response) {
-      // console.log(response);
       $('#user-list').append(response);
     };
 

@@ -8,7 +8,6 @@ define([ 'jquery' ], function( $ ) {
     $private.projectPaths = {};
 
     $public.init = function init() {
-      console.log( 'carregou app.js' );
       $private.loadPageScripts();
     };
 
@@ -22,7 +21,6 @@ define([ 'jquery' ], function( $ ) {
     };
 
     $private.loadPageScripts = function loadPageScripts() {
-      console.log($('body').data('namespace'));
 
       $private.initModule( 'controllers/application' );
 

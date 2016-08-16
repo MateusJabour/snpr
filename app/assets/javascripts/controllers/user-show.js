@@ -8,7 +8,6 @@ define(['jquery', 'bootstrap'], function ( $, bs ) {
     var $helpBlock = $('[data-js="help_block"]');
 
     var init = function () {
-      console.log('carregou jovem');
       $('[data-toggle="tooltip"]').tooltip();
       initEvents();
     };

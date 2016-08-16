@@ -22,7 +22,6 @@ define(['jquery', 'jqueryui', 'bootstrap'], function ($, jqueryui, bs) {
     };
 
     var ajaxRequest = function (response) {
-      console.log(response);
       $(function () {
         $('[data-js="autocomplete-phenotype-field"]').autocomplete({
           source: response.known_phenotypes

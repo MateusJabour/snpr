@@ -6,7 +6,6 @@ define(['jquery', 'jqueryJqplot', 'jqplotBarRenderer', 'jqplotCursor',
 
   var fitbitShow = function () {
     var init = function () {
-      console.log('carregou fitbit show');
       initEvents();
     }
 
@@ -21,7 +20,6 @@ define(['jquery', 'jqueryJqplot', 'jqplotBarRenderer', 'jqplotCursor',
 
     var ajaxRequest = function (response) {
       //Activity Graph
-      console.log(response);
       var steps = response.steps;
       var floors = response.floors;
       var plot1 = $.jqplot('chart1', [floors, steps], {
