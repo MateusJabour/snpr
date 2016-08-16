@@ -14,7 +14,7 @@ define(['jquery'], function ($) {
 
     var panelHeaderCallback = function (event) {
       event.preventDefault();
-      var $extendButton = $(this).siblings('.test-faq__title-extend');
+      var $extendButton = $(this).siblings('.faq__title-extend');
       if ($extendButton.text() === '+') {
         $extendButton.text('-');
       } else if ($extendButton.text() === '-') {
