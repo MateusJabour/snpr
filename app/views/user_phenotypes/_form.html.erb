@@ -6,7 +6,7 @@
 </div>
 
 
-<%= form_for(@user_phenotype, :url => {:controller => :user_phenotypes, :action => :create,:js_modal => @js_modal}, :html => {:class => "form-horizontal test-phenotype__add-phenotype-form", :name => "new_user_phenotype"}) do |f| %>
+<%= form_for(@user_phenotype, :url => {:controller => :user_phenotypes, :action => :create,:js_modal => @js_modal}, :html => {:class => "form-horizontal phenotype__add-phenotype-form", :name => "new_user_phenotype"}) do |f| %>
   <%= render 'shared/error_messages', :target => @phenotype %>
   <%= f.hidden_field :phenotype_id, :value => @phenotype.id %>
   <%if @js_modal != true%>

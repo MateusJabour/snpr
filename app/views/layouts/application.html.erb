@@ -19,11 +19,11 @@
     <%if current_user %>
     <div data-js="help_block" id="help_block" class="container">
       <%unless (current_user.help_one or current_user.has_sequence) && (current_user.help_two or current_user.user_phenotypes != []) && (current_user.help_three or current_user.phenotype_creation_counter != 0) == true%>
-      <div class ="well row test-userpage__help-block">
+      <div class ="well row userpage__help-block">
         <%if current_user.has_sequence == false and current_user.help_one == false%>
         <div class="col-md-4 text-center" id="help_one" data-js="help_one">
           <%=link_to "x",{:controller => "users", :action => "remove_help_one", :id => current_user}, :remote => true, id: "remove_help_one",:class => "close" %>
-          <a href="/genotypes/new"><span class="glyphicon glyphicon-arrow-up test-userpage__help-text-icons"></span></a><br/>
+          <a href="/genotypes/new"><span class="glyphicon glyphicon-arrow-up userpage__help-text-icons"></span></a><br/>
           <h3>Upload Your Genotyping File</h3>
           <p>
             <%=link_to("Upload the genotyping raw-data you got","/genotypes/new")%> from <em>23andMe</em>, <em>deCODEme</em> or <em>FamilyTreeDNA</em> to the <em>openSNP</em> database to share it with other personal-genomics customers and scientists from around the world.
@@ -33,7 +33,7 @@
         <%if current_user.user_phenotypes == [] and current_user.help_two == false%>
         <div class="col-md-4 text-center" id="help_two" data-js="help_two">
           <%=link_to("x",{:controller => "users", :action => "remove_help_two", :id => current_user},:remote => true, id: "remove_help_two", :class => "close")%>
-          <a href="/users/"+current_user.id.t_s+"#unentered_variations"><span class="glyphicon glyphicon-heart test-userpage__help-text-icons"></span></a><br/>
+          <a href="/users/"+current_user.id.t_s+"#unentered_variations"><span class="glyphicon glyphicon-heart userpage__help-text-icons"></span></a><br/>
           <h3>Enter Your Variations</h3>
           Let us, and the other <em>openSNP</em> users, know some of your characteristics&mdash;like hair or eye color! Or how about some diseases? <%=link_to("Whatever you feel like sharing!","/users/"+current_user.id.to_s+"#unentered_variations")%>.
         </div>
@@ -41,7 +41,7 @@
         <%if current_user.phenotype_creation_counter == 0 and current_user.help_three == false %>
         <div class="col-md-4 text-center" id="help_three" data-js="help_three">
           <%=link_to("x",{:controller => "users", :action => "remove_help_three", :id => current_user},:remote => true, id: "remove_help_three", :class => "close")%>
-          <a href="/phenotypes/new"><span class="glyphicon glyphicon-folder-open test-userpage__help-text-icons"></span></a><br/>
+          <a href="/phenotypes/new"><span class="glyphicon glyphicon-folder-open userpage__help-text-icons"></span></a><br/>
           <h3>Enter a New Phenotype</h3>
           <p>
             Got an idea for a phenotype that has not been asked about yet and that could have genetical roots? <%=link_to("Great, you can add one","/phenotypes/new")%> to the <em>openSNP</em> database.
@@ -52,7 +52,7 @@
       <%end%>
     </div>
     <%end%>
-    <div class="container-fluid test-warnings_container" id="alert-messages">
+    <div class="container-fluid warnings_container" id="alert-messages">
       <div id="flash_notice" class="alert alert-success" style="display:none"></div>
       <% if flash[:notice] %>
         <div class="warning__alert alert alert-success text-center center-block" data-dismiss="alert">
@@ -79,7 +79,7 @@
         <div class="row">
           <div class="col-md-2 col-xs-6 col-xs-offset-2 col-md-offset-0">
 
-            <ul class="nav nav-pills nav-stacked test-phenotype__side-menu">
+            <ul class="nav nav-pills nav-stacked phenotype__side-menu">
               <li class="nav-header">User-generated</li>
               <li <% if params[:controller] == "phenotypes" %>class="active"<% end %>>
                 <a class="phenotype__side-menu-item" href="/phenotypes">Normal phenotypes</a>

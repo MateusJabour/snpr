@@ -6,15 +6,15 @@
     <span class="message__message-date"><%= @message.created_at %> </span>
 
   </div>
-  <div class="well test-message__message">
+  <div class="well message__message">
     <h3 class="message__message-subject">Subject: <%=@message.subject %></h3>
     <%=  simple_format(@message.body, class: "test-message__message-body") %>
   </div>
   <div class="message__buttons">
     <%if @from != "Deleted User"%>
-    <%= link_to "Reply", {:controller => "messages", :action => "new", :user_to_send => @from.id, :message => @message}, :class => "btn btn-primary test-message__reply-button" %>
+    <%= link_to "Reply", {:controller => "messages", :action => "new", :user_to_send => @from.id, :message => @message}, :class => "btn btn-primary message__reply-button" %>
     <%end%>
-    <%= button_to "Delete", message_path(@message.id), :method => :delete, :confirm => "Are you sure?", :class => "btn btn-danger test-message__delete-button"%>
+    <%= button_to "Delete", message_path(@message.id), :method => :delete, :confirm => "Are you sure?", :class => "btn btn-danger message__delete-button"%>
   </div>
 </div>
 </div>

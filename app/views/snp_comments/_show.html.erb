@@ -1,7 +1,7 @@
 <% @comments.each do |c|%>
 <div id="<%="comment"+c.id.to_s%>">
   <div class="comments__single-comment clearfix">
-    <div class="pull-left test-comments__comment-photo-div">
+    <div class="pull-left comments__comment-photo-div">
       <%if c.user != nil%>
       <%=image_tag c.user.avatar.url(:head), class: "test-comments__comment-photo"%>
       <%end%>
@@ -20,7 +20,7 @@
         <% end %>
       </a>
       <%= simple_format c.comment_text, class: "test-comments__comment-text" %>
-      <%=link_to "Reply", "#", class: "btn btn-default test-comments__comment-reply-button", id: "#{c.id.to_s}", data: {js: "snp-reply-button"}%>
+      <%=link_to "Reply", "#", class: "btn btn-default comments__comment-reply-button", id: "#{c.id.to_s}", data: {js: "snp-reply-button"}%>
     </div>
   </div>
 </div>

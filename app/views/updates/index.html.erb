@@ -1,6 +1,6 @@
 <div class="general__container container">
   <h3 class="general__title">Updates</h3>
-  <ul class="nav nav-tabs test-updates__tabs" role="tablist">
+  <ul class="nav nav-tabs updates__tabs" role="tablist">
     <li role="presentation" class="active"><a href="#publications" aria-controls="publications" role="tab" data-toggle="tab">Lastest publications</a></li>
     <li role="presentation"><a href="#newusers" aria-controls="newusers" role="tab" data-toggle="tab">New users</a></li>
     <li role="presentation"><a href="#newgeno" aria-controls="newgeno" role="tab" data-toggle="tab">New genotypes</a></li>
@@ -60,7 +60,7 @@
           <% end %>
         </table>
       </div>
-      <%= link_to("Show All Users", {:controller => "users", :action => "index"}, class: "btn btn-default center-block test-updates__tab-button") %>
+      <%= link_to("Show All Users", {:controller => "users", :action => "index"}, class: "btn btn-default center-block updates__tab-button") %>
     </div>
 
     <div role="tabpanel" class="tab-pane well tabs__one-tab" id="newgeno">
@@ -91,7 +91,7 @@
           <% end %>
         </table>
       </div>
-      <%= link_to("Show All Genotypes", {:controller => "genotypes", :action => "index"}, class: "btn btn-default btn btn-default center-block test-updates__tab-button")%>
+      <%= link_to("Show All Genotypes", {:controller => "genotypes", :action => "index"}, class: "btn btn-default btn btn-default center-block updates__tab-button")%>
     </div>
 
     <div role="tabpanel" class="tab-pane well tabs__one-tab" id="newpheno">
@@ -118,7 +118,7 @@
           <% end %>
           </table>
         </div>
-      <%= link_to("Show All Phenotypes", {:controller => "phenotypes", :action => "index"} ,class: "btn btn-default center-block test-updates__tab-button")%>
+      <%= link_to("Show All Phenotypes", {:controller => "phenotypes", :action => "index"} ,class: "btn btn-default center-block updates__tab-button")%>
     </div>
 
     <div role="tabpanel" class="tab-pane well tabs__one-tab" id="snpcomments">

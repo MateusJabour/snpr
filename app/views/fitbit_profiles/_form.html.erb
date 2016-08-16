@@ -16,7 +16,7 @@
   <%= f.check_box :sleep %> Sleep (Duration, times awoken, time until asleep, length of wake-phases)<br />
   <%= f.hidden_field :id, :value => @fitbit_profile.id %>
 
-  <%= f.submit "Save Fitbit-Settings", {:class=>"btn btn-info test-fitbit__form-submit-button"}%>
+  <%= f.submit "Save Fitbit-Settings", {:class=>"btn btn-info fitbit__form-submit-button"}%>
   <small><br>If you decide to uncheck some of the categories, all data that have been saved so far will be deleted.</small>
   <% end %>
 
