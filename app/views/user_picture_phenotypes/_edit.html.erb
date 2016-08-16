@@ -13,7 +13,7 @@
 				<%= f.label :phenotype_picture, "You can replace your phenotype picture"%>
 				<%= f.file_field :phenotype_picture%>
 			</div>
-			<div class="test-picture-phenotype__buttons">
+			<div class="picture-phenotype__buttons">
 				<%= f.submit "Update Picture", :class => "btn btn-primary"  %>
 				<a href="/user_picture_phenotypes/<%=@user_phenotype.id%>/delete" class="btn btn-danger">Delete</a>
 			</div>

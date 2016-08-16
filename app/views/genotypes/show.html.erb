@@ -1,8 +1,8 @@
-<div class="test-general__container container text-center">
-  <h1 class="test-general__title"><%=@user.name%>'s genotype</h1>
+<div class="general__container container text-center">
+  <h1 class="general__title"><%=@user.name%>'s genotype</h1>
 
   <div class="well test-phenotype__download-area">
-    <p class="test-phenotype__upload-date">Originally uploaded on: <%= @genotype.created_at %></p>
+    <p class="phenotype__upload-date">Originally uploaded on: <%= @genotype.created_at %></p>
 
     <p><%= link_to "Download this set", '../data/' + @genotype.fs_filename, class: "btn btn-primary test-phenotype__download-button" %> </p>
   </div>

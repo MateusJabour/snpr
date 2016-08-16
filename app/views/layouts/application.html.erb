@@ -55,19 +55,19 @@
     <div class="container-fluid test-warnings_container" id="alert-messages">
       <div id="flash_notice" class="alert alert-success" style="display:none"></div>
       <% if flash[:notice] %>
-        <div class="test-warning__alert alert alert-success text-center center-block" data-dismiss="alert">
+        <div class="warning__alert alert alert-success text-center center-block" data-dismiss="alert">
           <button type="button" class="close" data-dismiss="alert">x</button>
           <strong><%= flash[:notice].html_safe %></strong>
         </div>
       <% end %>
       <% if flash[:warning] %>
-        <div class="test-warning__alert alert alert-danger text-center center-block" data-dismiss="alert">
+        <div class="warning__alert alert alert-danger text-center center-block" data-dismiss="alert">
           <button type="button" class="close" data-dismiss="alert">x</button>
           <strong><%= flash[:warning].html_safe %></strong>
         </div>
       <% end %>
       <% if flash[:achievement] %>
-        <div class="test-warning__alert alert alert-info text-center center-block" data-dismiss="alert">
+        <div class="warning__alert alert alert-info text-center center-block" data-dismiss="alert">
           <button type="button" class="close" data-dismiss="alert">x</button>
           <strong><%= flash[:achievement].html_safe %></strong>
         </div>
@@ -82,14 +82,14 @@
             <ul class="nav nav-pills nav-stacked test-phenotype__side-menu">
               <li class="nav-header">User-generated</li>
               <li <% if params[:controller] == "phenotypes" %>class="active"<% end %>>
-                <a class="test-phenotype__side-menu-item" href="/phenotypes">Normal phenotypes</a>
+                <a class="phenotype__side-menu-item" href="/phenotypes">Normal phenotypes</a>
               </li>
               <li <% if params[:controller] == "picture_phenotypes" %>class="active"<% end %>>
-                <a class="test-phenotype__side-menu-item" href="/picture_phenotypes">Picture phenotypes</a>
+                <a class="phenotype__side-menu-item" href="/picture_phenotypes">Picture phenotypes</a>
               </li>
               <li class="nav-header">APIs</li>
               <li <% if params[:controller] == "fitbit_profiles" %>class="active"<% end %>>
-                <a class="test-phenotype__side-menu-item" href="/fitbit">Fitbit phenotypes</a>
+                <a class="phenotype__side-menu-item" href="/fitbit">Fitbit phenotypes</a>
               </li>
             </ul>
 

@@ -1,4 +1,4 @@
-<div class="test-userpage__profile-informations row">
+<div class="userpage__profile-informations row">
   <div class="col-md-10 col-xs-12 clearfix">
     <%= image_tag @user.avatar.url(:thumb), class: "hidden-xs pull-left test-userpage__profile-picture"%>
     <h2>Hello, <%= @first_name %>
@@ -7,7 +7,7 @@
       <%end%>
     </h2>
     <% if @user.description != nil  %>
-    <p class="test-userpage__description"><%= @user.description %></p>
+    <p class="userpage__description"><%= @user.description %></p>
     <% else %>
     <%= link_to "Add your description", "/users/" + current_user.id.to_s + "/edit"%>
     <% end %>
@@ -95,15 +95,15 @@
     <h3 class="tabs__one-tab-title">Messages</h3>
     <p><%= link_to "Write a new message", {:controller => "messages", :action => "new"}, class: "test-userpage__write-message btn btn-default" %></p>
 
-    <h4 class="test-userpage__received-title">Received</h4>
+    <h4 class="userpage__received-title">Received</h4>
     <% if @received_messages != [] %>
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
           <tr>
-            <th class="test-userpage__user-cell">From</th>
-            <th class="test-userpage__subject-cell">Subject</th>
-            <th class="test-userpage__status-cell"></th>
+            <th class="userpage__user-cell">From</th>
+            <th class="userpage__subject-cell">Subject</th>
+            <th class="userpage__status-cell"></th>
           </tr>
         </thead>
         <% @received_messages.each do |m| %>
@@ -130,20 +130,20 @@
       </table>
     </div>
     <% else %>
-    <p class="test-userpage__no-messages">
+    <p class="userpage__no-messages">
       You haven't received any messages yet.
     </p>
     <% end %>
 
-    <h4 class="test-userpage__sent-title">Sent</h4>
+    <h4 class="userpage__sent-title">Sent</h4>
     <% if @sent_messages != [] %>
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
           <tr>
-            <th class="test-userpage__user-cell">To</th>
-            <th class="test-userpage__subject-cell">Subject</th>
-            <th class="test-userpage__status-cell"></th>
+            <th class="userpage__user-cell">To</th>
+            <th class="userpage__subject-cell">Subject</th>
+            <th class="userpage__status-cell"></th>
           </tr>
         </thead>
         <% @sent_messages.each do |m| %>
@@ -167,7 +167,7 @@
       </table>
     </div>
     <% else %>
-    <p class="test-userpage__no-messages">
+    <p class="userpage__no-messages">
       You have not sent any messages yet.
     </p>
     <% end %>
