@@ -11,7 +11,7 @@
   <%= form_for @message do |f| %>
   <div class="form-group">
     <%= f.label :to_id, 'To' %>
-    <%= f.select(:to_id, @users.map { |user| [user.name, user.id] },{selected: params[:user_to_send]}, {class: "test-new-message__select-input"})  %>
+    <%= f.select(:to_id, @users.map { |user| [user.name, user.id] },{selected: params[:user_to_send]}, {class: "new-message__select-input"})  %>
   </div>
   <div class="form-group">
     <%= f.label :subject %>

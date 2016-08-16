@@ -8,7 +8,7 @@
 </div>
 
 <div class="fitbit__options">
-  <%= form_for @fitbit_profile, :url => fitbit_update_path, :method => :post, :html => {:class => "test-fitbit__form"} do |f|%>
+  <%= form_for @fitbit_profile, :url => fitbit_update_path, :method => :post, :html => {:class => "fitbit__form"} do |f|%>
   <h4> For which categories should we save data?</h4>
   <%= f.error_messages %>
   <%= f.check_box :body %> Body (Weight and Body Mass Index)<br />

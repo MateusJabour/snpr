@@ -8,7 +8,7 @@
   </div>
   <div class="well message__message">
     <h3 class="message__message-subject">Subject: <%=@message.subject %></h3>
-    <%=  simple_format(@message.body, class: "test-message__message-body") %>
+    <%=  simple_format(@message.body, class: "message__message-body") %>
   </div>
   <div class="message__buttons">
     <%if @from != "Deleted User"%>

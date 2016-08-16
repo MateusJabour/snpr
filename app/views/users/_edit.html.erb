@@ -44,11 +44,11 @@
       <div class="row settings__phenotypes-options">
         <div class="col-md-offset-1 col-md-4 settings__phenotypes-options-sex">
           <h4 class="text-center"><%= f.label :sex, "Chromosomal Sex"%></h4>
-          <%= f.select :sex, options_for_select(["XX", "XY", "other", "rather not say"], selected: @user.sex), {}, {:class => "test-settings__phenotypes-select-input center-block"} %>
+          <%= f.select :sex, options_for_select(["XX", "XY", "other", "rather not say"], selected: @user.sex), {}, {:class => "settings__phenotypes-select-input center-block"} %>
         </div>
         <div class=" col-md-offset-2 col-md-4 settings__phenotypes-options-birth">
           <h4 class="text-center"><%= f.label :yearofbirth, "Year of Birth"%></h4>
-          <%= f.select :yearofbirth, options_for_select(((1900..2015).to_a << "rather not say").reverse, selected: @user.yearofbirth), {}, {:class => "test-settings__phenotypes-select-input center-block"} %>
+          <%= f.select :yearofbirth, options_for_select(((1900..2015).to_a << "rather not say").reverse, selected: @user.yearofbirth), {}, {:class => "settings__phenotypes-select-input center-block"} %>
         </div>
       </div>
       <div class="row">

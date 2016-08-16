@@ -1,5 +1,5 @@
 <div class="general__container container clearfix">
-  <%=image_tag("achievements/#{@achievement.short_name}_80px.png", :alt => @achievement.award, class: "test-achievements__image")%>
+  <%=image_tag("achievements/#{@achievement.short_name}_80px.png", :alt => @achievement.award, class: "achievements__image")%>
   <h3 class="general__title">Achievement: <%=@achievement.award%> </h3>
   <%=((@achievement.user_achievements.length.to_f / User.all.count)*100).to_s[0,5]%> % of all users received this achievement.
   <div class="well achievements__table">

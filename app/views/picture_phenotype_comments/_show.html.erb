@@ -4,7 +4,7 @@
   <div class="comments__single-comment clearfix">
     <div class="pull-left comments__comment-photo-div">
       <%if c.user != nil%>
-      <%=image_tag c.user.avatar.url(:head), class: "test-comments__comment-photo"%>
+      <%=image_tag c.user.avatar.url(:head), class: "comments__comment-photo"%>
       <%end%>
     </div>
     <div class="comments__comment-text-div clearfix">
@@ -20,7 +20,7 @@
         <%end%>
         <% end %>
       </a>
-      <%= simple_format c.comment_text, class: "test-comments__comment-text" %>
+      <%= simple_format c.comment_text, class: "comments__comment-text" %>
       <%=link_to "Reply", "#", class: "btn btn-default comments__comment-reply-button", id: "#{c.id.to_s}", data: {js: "picture-reply-button"}%>
     </div>
   </div>

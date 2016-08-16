@@ -1,7 +1,7 @@
 <%= render 'shared/error_messages', :target => @phenotype %>
 <div class="general__container">
   <h3 class="general__title">Create a new phenotype</h3>
-  <%= form_for @phenotype, html: {class: "test-phenotype__new-form form-horizontal well"} do |f| %>
+  <%= form_for @phenotype, html: {class: "phenotype__new-form form-horizontal well"} do |f| %>
     <div class="form-group">
       <%= f.label :characteristic, class:"col-sm-1 control-label" %>
       <div class="col-md-11 col-sm-11 col-xs-11">
