@@ -1,5 +1,6 @@
+<<<<<<< HEAD
 <h3>Write a comment on this SNP</h3>
-<%= form_for(@snp_comment, html: {class: "form-horizontal", name: "new_comment" }) do |f| %>
+<%= form_for  @snp_comment, :html => {:class => "comments__comment-box-form",:name => "new_comment"} do |f| %>
 <%= render 'shared/error_messages', target: @snp %>
 <%= f.hidden_field :snp_id, value: @snp.id %>
 <div class="well">
